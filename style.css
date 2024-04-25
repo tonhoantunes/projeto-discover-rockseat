@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*para fazer o cálculo da caixa de uma maneira mais coerente*/
+}
+
+/*raiz do html*/
+/*modo escuro*/
+:root {
+    --text-color: white; /*recebe um texto padrão branco*/
+    --bg-url: url(./assets/bg-mobile.jpg);/*recebe o background light*/
+    --stroke-color: rgba(255, 255, 255, 0.5);
+    --surface-color: rgba(255, 255, 255, 0.05); /*tudo em 255 fica branco, o 0.05 é o nível de branco*/
+    --surface-color-hover: rgba(0, 0, 0, 0.02);
+    --highlight-color: rgba(255, 255, 255, 0.2);
+    --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+/*modo light*/
+.light {
+    --text-color: black;
+    --bg-url: url(./assets/bg-mobile-light.jpg);
+    --stroke-color: rgba(0, 0, 0, 0.5);
+    --surface-color: rgba(0, 0, 0, 0.05);
+    --surface-color-hover: rgba(0, 0, 0, 0.02);
+    --highlight-color: rgba(0, 0, 0, 0.1);
+    --switch-bg-url: url(./assets/sun.svg);
+}
+
+body {
+    /*background: color image repeat position/size*/ /*serve para agrupar em uma única propriedade (atalho)*/
+    background: var(--bg-url) no-repeat top center/cover;
+}
+
+body * {
+    font-family: "Inter", sans-serif;
+    color: var(--text-color); /*recebe a variável que criei no root*/
+}
+
+#container {
+    width: 360px;
+    /*margin: auto; {para centralizar as laterais (no top and bottom) do div automaticamente} */
+    margin: 56px auto 0px;
+    padding: 0 24px;
+}
+
+/*profile*/
+#profile {
+    text-align: center;
+    padding: 24px;
+}
+
+#profile img {
+    width: 112px;/*para definir largura (geralmente no css n precisa definir altura*/
+    /*display: block; (display = vizualização) */
+}
+
+#profile p {
+    font-weight: 500;
+    line-height: 24px;
+    margin-top: 8px;
+}
+
+/*switch*/
+#switch {
+    position: relative;/*relativizar o absolute no button*/
+    width: 64px;
+    
+    margin: 4px auto;
+}
+
+#switch button {
+    width: 32px;
+    height: 32px;
+    background: white var(--switch-bg-url) no-repeat center;
+    border: 0;
+    border-radius: 50%;
+
+    position: absolute; /*faz uma sobreposição; andares; (camadas)*/
+    top: 50%; /*para centralizar o button de acordo com o translateY*/
+    left: 0;
+    z-index: 1;/*para movimentar as camadas (posição do andar)*/
+    transform: translateY(-50%); /*essa propriedade permite movimentar um elemento de acordo com os seus atributos*/ /*nesse caso, para movimentar o button de acordo com o eixo Y*/
+}
+
+.light #switch button {
+    right: 0;
+    left: initial;
+}
+
+#switch span {
+    display: block;
+    width: 64px;
+    height: 24px;
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 9999px;
+}
+
+/*links*/
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 24px 0;
+}
+
+ul li a {
+    display: flex; /*faz com que o A ocupe todo espaço disponível*/
+    justify-content: center; /*alinha o conteúdo ao meio*/ /*tbm serve o text-align: center; se for um display: block;*/
+    align-items: center; /*alinha o item ao meio só no eixo X que passa entre a caixa*/
+    
+    padding: 16px 24px;
+    
+    background: var(--surface-color); 
+    border: 1px solid var(--stroke-color);/*variavel da cor da borda*/
+    border-radius: 8px;
+
+    backdrop-filter: blur(4px); /*cria um embaçado*/
+    -webkit-backdrop-filter: blur(4px); /*o -webkit- serve para o Safari liberar o uso dessa propriedade*/
+    
+    text-decoration: none; /*se eu quiser colocar linha abaixo de um texto é só colocar essa propriedade com o atribudo: underline;*/
+    font-weight: 500px; /*poderia colocar o atributo bold tbm*/
+    
+    transition: background 0.2s; /*o 1º é qual elemento vai transicionar e o 2º é a velocidade que vai transicionar*/
+}
+
+/*pseudo-selector*/
+/*o :hover é para quando passar o mouse por cima do elemento*/
+ul li a:hover {
+    background-color: var(--surface-color-hover);
+    border: 1.5px solid var(--text-color);
+}
+
+/*social links*/
+
+#social-links {
+    display: flex;
+    justify-content: center;
+    
+    padding: 24px 0;
+    
+    font-size: 24px; /*tamanho de todos os elementos dentro desse id*/
+}
+
+/*para alinhar a "bolinha"*/
+#social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    
+    transition: background 0.2s;
+    border-radius: 50%;
+}
+
+#social-links a:hover {
+    background: var(--highlight-color);
+}
+
+footer {
+    padding: 24px 0;
+    text-align: center;
+    font-size: 14px;
+}
