@@ -83,11 +83,12 @@ body * {
     left: 0;
     z-index: 1;/*para movimentar as camadas (posição do andar)*/
     transform: translateY(-50%); /*essa propriedade permite movimentar um elemento de acordo com os seus atributos*/ /*nesse caso, para movimentar o button de acordo com o eixo Y*/
+
+    animation: slide-back 0.2s; /*não preciso colocar o forwards pq a propriedade do left já está definida em 0 */
 }
 
 .light #switch button {
-    right: 0;
-    left: initial;
+    animation: slide-in 0.2s forwards; /*aplicação da animação criada pelo keyframes*//*forwards serve para manter as propriedades da animação ao ser finalizada*/
 }
 
 #switch span {
@@ -99,6 +100,10 @@ body * {
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border-radius: 9999px;
+}
+
+#switch button:hover {
+    outline: 8px solid var(--highlight-color);
 }
 
 /*links*/
@@ -180,5 +185,26 @@ footer {
 
     .light {
         --bg-url: url(./assets/bg-desktop-light.jpg);
+    }
+}
+
+/*animation*/
+
+@keyframes slide-in {
+    from {
+        left: 0;
+    } /*começa*/
+    to {
+        left: 50%;
+    } /*termina*/
+}
+
+@keyframes slide-back {
+    from {
+        left: 50%;
+    }
+
+    to {
+        left: 0;
     }
 }
